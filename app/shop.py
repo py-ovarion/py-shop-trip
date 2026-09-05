@@ -25,10 +25,14 @@ class Shop:
               f"You have bought:")
         total_cost = 0
         for product, count in customer.product_cart.items():
+            product_recipy = product if count == 1 else product + "s"
+
             products_price = self.products[product] * count
+
             if products_price.is_integer():
                 products_price = int(products_price)
-            print(f"{count} {product}s "
+
+            print(f"{count} {product_recipy} "
                   f"for {products_price} dollars")
             total_cost += self.products[product] * count
         print(f"Total cost is {total_cost} dollars")

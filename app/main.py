@@ -31,12 +31,8 @@ def shop_trip() -> None:
                   f"{shop.name} costs "
                   f"{total_trip_cost}")
 
-            if bargain_shop is None:
-                if customer.money > total_trip_cost:
-                    bargain_shop = {"shop": shop, "cost": total_trip_cost}
-            else:
-                if bargain_shop["cost"] > total_trip_cost:
-                    bargain_shop = {"shop": shop, "cost": total_trip_cost}
+            if total_trip_cost <= customer.money and (bargain_shop is None or total_trip_cost < bargain_shop["cost"]):
+                bargain_shop = {"shop": shop, "cost": total_trip_cost}
 
         if bargain_shop:
             print(f"{customer.name} rides to "

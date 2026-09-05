@@ -11,7 +11,7 @@ class Customer:
                  name: str,
                  product_cart: dict[str, int],
                  location: list[int],
-                 money: int,
+                 money: float | int,
                  car: Car
                  ) -> None:
         self.name = name
@@ -35,14 +35,15 @@ class Customer:
     def calculate_arriving_double_cost(self,
                                        shop: Shop,
                                        fuel_cost: float) -> float:
-        double_distance = round(
-            math.sqrt(
-                (
-                    math.pow(self.location[0] - shop.location[0], 2)
-                    + math.pow(self.location[1] - shop.location[1], 2)
-                )
-            ) * 2, 2)
-        return self.car.calculate_fuel_consumption(double_distance) * fuel_cost
+        double_distance = math.sqrt(
+            (
+                math.pow(self.location[0] - shop.location[0], 2)
+                + math.pow(self.location[1] - shop.location[1], 2)
+            )
+        ) * 2
+        return round(
+            self.car.calculate_fuel_consumption(double_distance) * fuel_cost
+            , 2)
 
     def calculate_full_trip_cost(self, shop: Shop, fuel_cost: float) -> float:
         return round(
@@ -66,5 +67,5 @@ class Customer:
                 f"CAR: {self.car}")
 
     @classmethod
-    def from_dict(cls, data: dict[str, Any]) -> Customer:
+    def from_dict(cls, data: dict[str, Any]) -> "Customer":
         return cls(**data)
