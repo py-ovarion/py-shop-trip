@@ -60,12 +60,6 @@ class Customer:
         print(f"{self.name} rides home")
         print(f"{self.name} now has {self.money} dollars\n")
 
-    def __repr__(self) -> str:
-        return (f"{self.name}: "
-                f"{self.product_cart}, "
-                f"loc:{self.location}. "
-                f"CAR: {self.car}")
-
     @classmethod
     def from_dict(cls, data: dict[str, Any]) -> "Customer":
         return cls(**data)

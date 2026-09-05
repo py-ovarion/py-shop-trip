@@ -5,6 +5,3 @@ class Car:
 
     def calculate_fuel_consumption(self, distance: float | int) -> float:
         return distance * self.fuel_consumption / 100
-
-    def __str__(self) -> str:
-        return f"Car: {self.brand} {self.fuel_consumption}"

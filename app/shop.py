@@ -41,6 +41,3 @@ class Shop:
     @classmethod
     def from_dict(cls, data: dict[str, Any]) -> Shop:
         return cls(**data)
-
-    def __repr__(self) -> str:
-        return f"{self.name}: {self.location}, {self.products}"
